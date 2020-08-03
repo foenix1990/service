@@ -1,11 +1,11 @@
 // Import Server
-const fastify = require('./server.js')
+const fastify = require('./src/server.js')
 
 // Import external dependancies
 const gql = require('fastify-gql')
 
 // Import GraphQL Schema
-const schema = require('./schema')
+const schema = require('./src/schema')
 
 // Register Fastify GraphQL
 fastify.register(gql, {
@@ -19,7 +19,7 @@ fastify.register(require('fastify-cors'), {
 })
 
 // Import Swagger Options
-const swagger = require('./config/swagger')
+const swagger = require('./src/config/swagger')
 
 // Register Swagger
 fastify.register(require('fastify-swagger'), swagger.options)
@@ -63,7 +63,7 @@ function verifyJWTandLevelDB (request, reply, done) {
 }
 
 // SignUp
-const documentationUser = require('./routes/documentation/userApi')
+const documentationUser = require('./src/routes/documentation/userApi')
 fastify.after(() => {
 	fastify.route({
 		method: 'POST',
@@ -100,7 +100,7 @@ fastify.after(() => {
 })
 
 // Import Routes
-const routes = require('./routes')
+const routes = require('./src/routes')
 
 // Loop over each route
 routes.forEach((route, index) => {
